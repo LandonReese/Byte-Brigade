@@ -24,8 +24,8 @@ int pointX;     // x value for point
 int pointY;     // y value for point
 vector<point> boundaries; // list of all points that are boundaries
 
-const int matrixRow = 1; // dx
-const int matrixCol = 1; // dy
+int matrixRow = 1; // dx
+int matrixCol = 1; // dy
 int k;                   // times wind was blown over the crystal, aka total lines to analyze
 
 int windX;       // horizontal direction of wind
@@ -41,35 +41,35 @@ int main(){
     if(!newFile){
         cout << "Error, the selected file has not been found." << endl;
     } else { // The file has been found, storing data into variables
-        string g = "";
-        while(newFile){
-            cin >> g;
-            cout << g << " " << endl;
-        }
         
-        // newFile >> matrixRow;
-        // newFile << matrixCol;
-        // newFile >> k;
+        newFile >> matrixRow;
+        newFile >> matrixCol;
+        newFile >> k;
 
-        // bool minMatrix[matrixRow][matrixCol];
-        // bool maxMatrix[matrixRow][matrixCol];
+        bool minMatrix[matrixRow][matrixCol];
+        bool maxMatrix[matrixRow][matrixCol];
 
-        // //call function to set all x and y to FALSE for initial declaration
+        //call function to set all x and y to FALSE for initial declaration
 
-        // newFile >> windX;
-        // newFile >> windY;
-        // newFile >> numOfPoints;
-        // for (int h = 0; h < numOfPoints; h++) // loops through the file k time, taking in data one line at a time
-        // {
-        //     // inner for loop for how many k iterations
-        //     newFile >> pointX;
-        //     newFile >> pointY;
-        //     point p = new point(pointX, pointY);
-        //     boundaries.push_back(p);
-        // }
+        newFile >> windX;
+        newFile >> windY;
+        newFile >> numOfPoints;
+        for (int h = 0; h < numOfPoints; h++) // loops through the file k time, taking in data one line at a time
+        {
+            // inner for loop for how many k iterations
+            newFile >> pointX;
+            newFile >> pointY;
+            point p = point(pointX, pointY);
+            //p.x = pointX;
+            //p.y = pointY;
+            boundaries.push_back(p);
+        }
     }
 
     for(point d: boundaries){
+        int count = 1;
+        cout << count << ": " << d.x <<", " << d.y << endl;
+        count++;
         //minMatrix[d.x][d.y] = '#';
     }
 
