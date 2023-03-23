@@ -32,22 +32,32 @@ int windX;       // horizontal direction of wind
 int windY;       // vertical direction of wind
 int numOfPoints; // amount of crystal pairs
 
+//Prototype functions
+void print(bool**, int, int);
+void setMatrix(bool**, int, int);
+
 //START OF MAIN FUNCTION
 int main(){
+    cout << "1. Starting main. " << endl;
+
     // File input/Output
     ifstream newFile;
     newFile.open("sample-1.txt"); // INSERT NAME OF TEST-FILE HERE
+
+    cout << "2. File has been created. " << endl;
 
     if(!newFile){
         cout << "Error, the selected file has not been found." << endl;
     } else { // The file has been found, storing data into variables
         
+        cout << "3. The file has been found. " << endl;
         newFile >> matrixRow;
         newFile >> matrixCol;
         newFile >> k;
 
         bool minMatrix[matrixRow][matrixCol];
         bool maxMatrix[matrixRow][matrixCol];
+        setMatrix(minMatrix, matrixRow, matrixCol);
 
         //call function to set all x and y to FALSE for initial declaration
 
@@ -59,27 +69,32 @@ int main(){
             // inner for loop for how many k iterations
             newFile >> pointX;
             newFile >> pointY;
-            point p = point(pointX, pointY);
+            minMatrix[pointX][pointY] = true;
+            // point p = point(pointX, pointY);
             //p.x = pointX;
             //p.y = pointY;
-            boundaries.push_back(p);
+            // boundaries.push_back(p);
         }
+        // setMatrix(minMatrix, matrixRow, matrixCol);
+        // print(minMatrix, matrixRow, matrixCol);
     }
 
-    for(point d: boundaries){
-        int count = 1;
-        cout << count << ": " << d.x <<", " << d.y << endl;
-        count++;
-        //minMatrix[d.x][d.y] = '#';
-    }
+    // for(point d: boundaries){
+    //     int count = 1;
+    //     cout << count << ": " << d.x <<", " << d.y << endl;
+    //     count++;
+    //     //minMatrix[d.x][d.y] = '#';
+    // }
 
     // Assign all numbers to variables
 
     // Create Min Matrix
+    
 }
+//END OF MAIN FUNCTION
 
 // Print function for our min/max matrices
-void print(bool** m, int row, int col){
+void print(bool m[][0], int row, int col){
     for (int i = 0; i < row; i++)
     {
         for (int j = 0; j < col; j++)
@@ -93,7 +108,7 @@ void print(bool** m, int row, int col){
     }
 }
 
-void setMatrix(bool** matrix, int row, int col){
+void setMatrix(bool matrix[][0], int row, int col){
     for (int i = 0; i < row; i++)
     {
         for (int j = 0; j < col; j++)
