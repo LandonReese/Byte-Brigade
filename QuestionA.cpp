@@ -41,30 +41,36 @@ int main(){
     if(!newFile){
         cout << "Error, the selected file has not been found." << endl;
     } else { // The file has been found, storing data into variables
-        newFile >> matrixRow;
-        newFile >> matrixCol;
-        newFile >> k;
-
-        bool minMatrix[matrixRow][matrixCol];
-        bool maxMatrix[matrixRow][matrixCol];
-
-        //call function to set all x and y to FALSE for initial declaration
-
-        newFile >> windX;
-        newFile >> windY;
-        newFile >> numOfPoints;
-        for (int h = 0; h < numOfPoints; h++) // loops through the file k time, taking in data one line at a time
-        {
-            // inner for loop for how many k iterations
-            newFile >> pointX;
-            newFile >> pointY;
-            point p = new point(pointX, pointY);
-            boundaries.push_back(p);
+        string g = "";
+        while(newFile){
+            cin >> g;
+            cout << g << " " << endl;
         }
+        
+        // newFile >> matrixRow;
+        // newFile << matrixCol;
+        // newFile >> k;
+
+        // bool minMatrix[matrixRow][matrixCol];
+        // bool maxMatrix[matrixRow][matrixCol];
+
+        // //call function to set all x and y to FALSE for initial declaration
+
+        // newFile >> windX;
+        // newFile >> windY;
+        // newFile >> numOfPoints;
+        // for (int h = 0; h < numOfPoints; h++) // loops through the file k time, taking in data one line at a time
+        // {
+        //     // inner for loop for how many k iterations
+        //     newFile >> pointX;
+        //     newFile >> pointY;
+        //     point p = new point(pointX, pointY);
+        //     boundaries.push_back(p);
+        // }
     }
 
-    for(point d : boundaries){
-        minMatrix[d.x][d.y] = '#';
+    for(point d: boundaries){
+        //minMatrix[d.x][d.y] = '#';
     }
 
     // Assign all numbers to variables
@@ -73,7 +79,7 @@ int main(){
 }
 
 // Print function for our min/max matrices
-void print(bool[][] m, int row, int col){
+void print(bool** m, int row, int col){
     for (int i = 0; i < row; i++)
     {
         for (int j = 0; j < col; j++)
@@ -87,5 +93,12 @@ void print(bool[][] m, int row, int col){
     }
 }
 
-void setMatrix(bool[][] matrix, int row, int col){
+void setMatrix(bool** matrix, int row, int col){
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            matrix[i][j] = false;
+        }
+    }
 }
