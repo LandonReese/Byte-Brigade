@@ -32,44 +32,48 @@ int windX;       // horizontal direction of wind
 int windY;       // vertical direction of wind
 int numOfPoints; // amount of crystal pairs
 
-// File input/Output
-ifstream newFile;
-newFile.open("sample-1.txt"); // INSERT NAME OF TEST-FILE HERE
+//START OF MAIN FUNCTION
+int main(){
+    // File input/Output
+    ifstream newFile;
+    newFile.open("sample-1.txt"); // INSERT NAME OF TEST-FILE HERE
 
-if (!newFile){
-    cout << "Error, the selected file has not been found." << endl;
-} else { // The file has been found, storing data into variables
-    newFile >> matrixRow;
-    newFile >> matrixCol;
-    newFile >> k;
+    if(!newFile){
+        cout << "Error, the selected file has not been found." << endl;
+    } else { // The file has been found, storing data into variables
+        newFile >> matrixRow;
+        newFile >> matrixCol;
+        newFile >> k;
 
-    bool minMatrix[matrixRow][matrixCol];
-    bool maxMatrix = minMatrix;
+        bool minMatrix[matrixRow][matrixCol];
+        bool maxMatrix[matrixRow][matrixCol];
 
-    newFile >> windX;
-    newFile >> windY;
-    newFile >> numOfPoints;
-    for (int h = 0; h < numOfPoints; h++) // loops through the file k time, taking in data one line at a time
-    {
-        // inner for loop for how many k iterations
-        newFile >> pointX;
-        newFile >> pointY;
-        point p = new point(pointX, pointY);
-        boundaries.push_back(p);
+        //call function to set all x and y to FALSE for initial declaration
+
+        newFile >> windX;
+        newFile >> windY;
+        newFile >> numOfPoints;
+        for (int h = 0; h < numOfPoints; h++) // loops through the file k time, taking in data one line at a time
+        {
+            // inner for loop for how many k iterations
+            newFile >> pointX;
+            newFile >> pointY;
+            point p = new point(pointX, pointY);
+            boundaries.push_back(p);
+        }
     }
+
+    for(point d : boundaries){
+        minMatrix[d.x][d.y] = '#';
+    }
+
+    // Assign all numbers to variables
+
+    // Create Min Matrix
 }
-
-for(point d : boundaries){
-    minMatrix[d.x][d.y] = '#';
-}
-
-// Assign all numbers to variables
-
-// Create Min Matrix
 
 // Print function for our min/max matrices
-public void print(bool[][] m, int row, int col)
-{
+void print(bool[][] m, int row, int col){
     for (int i = 0; i < row; i++)
     {
         for (int j = 0; j < col; j++)
@@ -83,6 +87,5 @@ public void print(bool[][] m, int row, int col)
     }
 }
 
-public void setMatrix(bool[][] matrix, int row, int col)
-{
+void setMatrix(bool[][] matrix, int row, int col){
 }
