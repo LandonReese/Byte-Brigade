@@ -20,21 +20,96 @@ struct point
         y = b;
     }
 };
+
 int pointX;     // x value for point
 int pointY;     // y value for point
 vector<point> boundaries; // list of all points that are boundaries
 
-int matrixRow = 1; // dx
-int matrixCol = 1; // dy
-int k;                   // times wind was blown over the crystal, aka total lines to analyze
+// There isn't a single person in the world that knows why these values need to be defined.
+// Several hours have been wasted because of these next two line,
+// PROCEED WITH EXTREME CAUTION!
+const int ROWS = 1;
+const int COLS = 1;
+
+int matrixRow = -1; // dx
+int matrixCol = -1; // dy
+int k;              // times wind was blown over the crystal, aka total lines to analyze
 
 int windX;       // horizontal direction of wind
 int windY;       // vertical direction of wind
 int numOfPoints; // amount of crystal pairs
 
+// Passing a 2D Array through a function
+/*
+int **array;
+array = new int *[matrixRow];
+for(int i = 0; i <matrixRow; i++)
+    array[i] = new int[matrixCol];
+void passFunc(int **a)
+{
+    // ...
+}
+passFunc(array);
+*/
+
+// Sets all values in matrix to zero
+void setMatrix(bool matrix[ROWS][COLS], int row, int col){
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            matrix[i][j] = false;
+        }
+    }
+}
+
+/* from ChatGPT
+void setMatrix(bool matrix[][matrixCol], int row, int col){
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            matrix[i][j] = false;
+        }
+    }
+}
+*/
+
+// Print function for min/max matrices
+void print(bool m[ROWS][COLS], int row, int col){
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            if (m[i][j])
+                cout << "#";
+            else
+                cout << ".";
+        }
+        cout << endl;
+    }
+}
+/*
+
+void print(bool m[][matrixCol], int row, int col){
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            if (m[i][j])
+                cout << "#";
+            else
+                cout << ".";
+        }
+        cout << endl;
+    }
+}
+
+*/
+
 //Prototype functions
-void print(bool**, int, int);
-void setMatrix(bool**, int, int);
+//void print(bool m[ROWS][COLS], int, int);
+//void setMatrix(bool m[ROWS][COLS], int, int);
 
 //START OF MAIN FUNCTION
 int main(){
@@ -55,9 +130,21 @@ int main(){
         newFile >> matrixCol;
         newFile >> k;
 
+        cout << "The variables row, col, k, have been instantiated" << endl;
+        //Debugging variable check
+        cout << "matrixRow: " << matrixRow << endl;
+        cout << "matrixCol: " << matrixCol << endl;
+        cout << "k: " << k << endl;
+
+        //Define and instantiate each matrix as false
+        // const int mRow = matrixRow;
+        // const int mCol = matrixCol;
         bool minMatrix[matrixRow][matrixCol];
         bool maxMatrix[matrixRow][matrixCol];
         setMatrix(minMatrix, matrixRow, matrixCol);
+            //thinks of it's parameters like this:
+            //setMatrix(bool *(matrix)[1], rows, cols)
+        
 
         //call function to set all x and y to FALSE for initial declaration
 
@@ -93,27 +180,33 @@ int main(){
 }
 //END OF MAIN FUNCTION
 
-// Print function for our min/max matrices
-void print(bool m[][0], int row, int col){
-    for (int i = 0; i < row; i++)
-    {
-        for (int j = 0; j < col; j++)
-        {
-            if (m[i][j])
-                cout << "#";
-            else
-                cout << ".";
-        }
-        cout << endl;
-    }
-}
+// // Print function foCOLSur min/max matrices
+// void print(bool m[ROWS][COLS], int row, int col){
+//     for (int i = 0; i < row; i++)
+//     {
+//         for (int j = 0; j < col; j++)
+//         {
+//             if (m[i][j])
+//                 cout << "#";
+//             else
+//                 cout << ".";
+//         }
+//         cout << endl;
+//     }
+// }
 
-void setMatrix(bool matrix[][0], int row, int col){
-    for (int i = 0; i < row; i++)
-    {
-        for (int j = 0; j < col; j++)
-        {
-            matrix[i][j] = false;
-        }
-    }
-}
+// void setMatrix2(bool(*matrix)[matrixCol])
+// {
+    
+    
+// }
+
+// void setMatrix(bool matrix[ROWS][COLS], int row, int col){
+//     for (int i = 0; i < row; i++)
+//     {
+//         for (int j = 0; j < col; j++)
+//         {
+//             matrix[i][j] = false;
+//         }
+//     }
+// }
